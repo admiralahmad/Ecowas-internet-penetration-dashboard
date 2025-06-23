@@ -1,8 +1,7 @@
 # 🌐 ECOWAS Internet Penetration Dashboard
 
 A dynamic Streamlit-based dashboard that visualizes internet access, mobile subscriptions, and data affordability across West African countries (ECOWAS region).
-
-![Screenshot](assets/dashboard_screenshot.png) <!-- Replace or remove if you don't have a screenshot yet -->
+<!-- Replace or remove if you don't have a screenshot yet -->
 
 ## 📊 Features
 
