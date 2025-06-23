@@ -74,13 +74,34 @@ latest_df = filtered_df[filtered_df["Year"] == latest_year]
 
 # Mapping country names to ISO Alpha-3 codes for ECOWAS
 country_code_map = {
-    "Benin": "BEN", "Burkina Faso": "BFA", "Cape Verde": "CPV", "Côte d'Ivoire": "CIV",
-    "Gambia": "GMB", "Ghana": "GHA", "Guinea": "GIN", "Guinea-Bissau": "GNB",
-    "Liberia": "LBR", "Mali": "MLI", "Niger": "NER", "Nigeria": "NGA",
-    "Senegal": "SEN", "Sierra Leone": "SLE", "Togo": "TGO"
+    "Benin": "BEN",
+    "Burkina Faso": "BFA",
+    "Cape Verde": "CPV",
+    "Cabo Verde": "CPV",  # Some datasets use this spelling
+    "Côte d'Ivoire": "CIV",
+    "Ivory Coast": "CIV",  # Alternative name handling
+    "Gambia": "GMB",
+    "Ghana": "GHA",
+    "Guinea": "GIN",
+    "Guinea-Bissau": "GNB",
+    "Liberia": "LBR",
+    "Mali": "MLI",
+    "Niger": "NER",
+    "Nigeria": "NGA",
+    "Senegal": "SEN",
+    "Sierra Leone": "SLE",
+    "Togo": "TGO"
 }
 
 latest_df["iso_alpha"] = latest_df["Country"].map(country_code_map)
+# Ensure the mapping is correct
+missing = latest_df[latest_df["iso_alpha"].isnull()]["Country"].unique()
+st.warning(f"Missing ISO codes for: {missing}")
+
+df["Country"] = df["Country"].str.strip()
+
+
+
 
 fig = px.choropleth(
     latest_df,
